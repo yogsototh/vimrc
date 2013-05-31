@@ -15,6 +15,8 @@ Bundle 'gmarik/vundle'
 Bundle 'neocomplcache'
 " solarized colorscheme
 Bundle 'altercation/vim-colors-solarized'
+" Right way to handle trailing-whitespace
+Bundle 'bronson/vim-trailing-whitespace'
 " writing pandoc documents
 Bundle 'vim-pandoc/vim-pandoc'
 " show which line changed using git
@@ -66,12 +68,14 @@ if has('gui_running')
 endif
 
 " -- neco-ghc
-let g:necoghc_enable_detailed_browse=1
+" let g:necoghc_enable_detailed_browse=1
 let $PATH=$PATH.':'.expand("~/.cabal/bin")
 
 " #####################
 " ### Personal conf ###
 " #####################
+
+syntax on
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
