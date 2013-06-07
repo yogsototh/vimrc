@@ -17,10 +17,14 @@ Bundle 'neocomplcache'
 Bundle 'altercation/vim-colors-solarized'
 " Right way to handle trailing-whitespace
 Bundle 'bronson/vim-trailing-whitespace'
+" NERDTree
+Bundle 'scrooloose/nerdtree'
 " writing pandoc documents
 Bundle 'vim-pandoc/vim-pandoc'
 " show which line changed using git
 Bundle 'airblade/vim-gitgutter' 
+" haskell
+Bundle 'haskell.vim'
 " Haskell mode
 Bundle 'lukerandall/haskellmode-vim'
 " neocomplcache plugin for Haskell
@@ -104,3 +108,25 @@ set autoindent
 set smartindent
 set cindent
 set cinoptions=(0,u0,U0
+
+" Spellchecking
+if has("spell") " if vim support spell checking
+    " Download dictionaries automatically
+    if !filewritable($HOME."/.vim/spell")
+        call mkdir($HOME."/.vim/spell","p")
+    endif
+    set spellsuggest=10 " z= will show suggestions (10 at most)
+    " spell checking for text, HTML, LaTeX, markdown and literate Haskell
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.lhs setlocal spell
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.lhs setlocal spelllang=fr,en
+    " better error highlighting with solarized
+    highlight clear SpellBad
+    highlight SpellBad term=standout ctermfg=2 term=underline cterm=underline
+    highlight clear SpellCap
+    highlight SpellCap term=underline cterm=underline
+    highlight clear SpellRare
+    highlight SpellRare term=underline cterm=underline
+    highlight clear SpellLocal
+    highlight SpellLocal term=underline cterm=underline
+endif
+
