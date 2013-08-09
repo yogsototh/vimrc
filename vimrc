@@ -117,8 +117,8 @@ if has("spell") " if vim support spell checking
     endif
     set spellsuggest=10 " z= will show suggestions (10 at most)
     " spell checking for text, HTML, LaTeX, markdown and literate Haskell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.lhs setlocal spell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.lhs setlocal spelllang=fr,en
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spell
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spelllang=fr,en
     " better error highlighting with solarized
     highlight clear SpellBad
     highlight SpellBad term=standout ctermfg=2 term=underline cterm=underline
@@ -130,3 +130,5 @@ if has("spell") " if vim support spell checking
     highlight SpellLocal term=underline cterm=underline
 endif
 
+" PERSONAL
+autocmd BufEnter *.ymd set filetype=markdown
