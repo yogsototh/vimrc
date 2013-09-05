@@ -29,7 +29,7 @@ Bundle 'Shougo/unite.vim'
 " writing pandoc documents
 Bundle 'vim-pandoc/vim-pandoc'
 " show which line changed using git
-Bundle 'airblade/vim-gitgutter' 
+Bundle 'airblade/vim-gitgutter'
 " haskell
 Bundle 'zenzike/vim-haskell'
 " Bundle 'haskell.vim'
@@ -37,9 +37,11 @@ Bundle 'zenzike/vim-haskell'
 Bundle 'lukerandall/haskellmode-vim'
 " neocomplcache plugin for Haskell
 " IMPORTANT you need to 'cabal install ghc-mod'
-Bundle 'ujihisa/neco-ghc'   
+Bundle 'ujihisa/neco-ghc'
 " Yesod templates
 Bundle 'pbrisbin/html-template-syntax'
+" Align code
+Bundle 'junegunn/vim-easy-align'
 filetype on
 
 " ###################
@@ -163,3 +165,16 @@ if has("spell") " if vim support spell checking
     highlight clear SpellLocal
     highlight SpellLocal term=underline cterm=underline
 endif
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" ========
+" Personal
+" ========
+
+" .ymd file type
+autocmd BufEnter *.ymd set filetype=markdown
+imap éé `
+
+
