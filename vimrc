@@ -42,6 +42,8 @@ Bundle 'ujihisa/neco-ghc'
 Bundle 'pbrisbin/html-template-syntax'
 " Align code
 Bundle 'junegunn/vim-easy-align'
+" XML
+Bundle 'othree/xml.vim'
 filetype on
 
 " ###################
@@ -96,13 +98,13 @@ let mapleader="&"
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " search a file in the filetree
-nnoremap <space><space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr><c-u>
-nnoremap <space>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <space>b :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer<cr>
+nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr><c-u>a
+nnoremap <space>f :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <space>b :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer<cr>
 " make a grep on all files!
-nnoremap <space>/ :<C-u>Unite grep:.<cr>
+nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
-nnoremap <space>y :<C-u>Unite history/yank<cr>
+nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
 
 " nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 " nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
@@ -176,5 +178,3 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
 imap éé `
-
-
