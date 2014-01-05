@@ -30,8 +30,11 @@ Bundle 'Shougo/unite.vim'
 Bundle 'vim-pandoc/vim-pandoc'
 " show which line changed using git
 Bundle 'airblade/vim-gitgutter'
-" haskell
+" Align code
+Bundle 'junegunn/vim-easy-align'
+" --- Haskell
 Bundle 'zenzike/vim-haskell'
+Bundle 'dan-t/vim-hsimport'
 " Bundle 'haskell.vim'
 " Haskell mode
 Bundle 'lukerandall/haskellmode-vim'
@@ -40,10 +43,13 @@ Bundle 'lukerandall/haskellmode-vim'
 Bundle 'ujihisa/neco-ghc'
 " Yesod templates
 Bundle 'pbrisbin/html-template-syntax'
-" Align code
-Bundle 'junegunn/vim-easy-align'
-" XML
+" --- XML
 Bundle 'othree/xml.vim'
+" --- Clojure
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+" YY Bundle 'jpalardy/vim-slime'
+
 filetype on
 
 " ###################
@@ -98,7 +104,7 @@ let mapleader="&"
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr><c-u>a
+nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed -input=!.cabal*\ !dist/\ !*.hi\  file_rec buffer bookmark<cr><c-u>a
 nnoremap <space>f :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <space>b :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer<cr>
 " make a grep on all files!
@@ -177,4 +183,9 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
+autocmd BufEnter *.cljs set filetype=clojure
+autocmd Syntax clojure RainbowParenthesesToggle
+autocmd Syntax clojure RainbowParenthesesLoadRound
+autocmd Syntax clojure RainbowParenthesesLoadSquare
+autocmd Syntax clojure RainbowParenthesesLoadBraces
 imap éé `
