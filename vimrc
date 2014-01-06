@@ -46,7 +46,7 @@ Bundle 'pbrisbin/html-template-syntax'
 " --- XML
 Bundle 'othree/xml.vim'
 " --- Clojure
-Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'yogsototh/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 " YY Bundle 'jpalardy/vim-slime'
 
@@ -98,9 +98,6 @@ endif
 let $PATH=$PATH.':'.expand("~/.cabal/bin")
 
 " -- Unite
-" on french keyboard "&" is placed on the 1 key.
-let mapleader="&"
-
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " search a file in the filetree
@@ -111,11 +108,6 @@ nnoremap <space>b :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-i
 nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
 nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
-
-" nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-" nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-" nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
 " #####################
 " ### Personal conf ###
@@ -184,8 +176,14 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
 autocmd BufEnter *.cljs set filetype=clojure
-autocmd Syntax clojure RainbowParenthesesToggle
-autocmd Syntax clojure RainbowParenthesesLoadRound
-autocmd Syntax clojure RainbowParenthesesLoadSquare
-autocmd Syntax clojure RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj inoremap {   {}<Left>
+autocmd BufEnter *.cljs,*.clj inoremap (   ()<Left>
+autocmd BufEnter *.cljs,*.clj inoremap [   []<Left>
+autocmd BufEnter *.cljs,*.clj inoremap "   ""<Left>
+
+" Easier anti-quote
 imap éé `
