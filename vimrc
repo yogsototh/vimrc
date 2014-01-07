@@ -45,10 +45,10 @@ Bundle 'ujihisa/neco-ghc'
 Bundle 'pbrisbin/html-template-syntax'
 " --- XML
 Bundle 'othree/xml.vim'
-" --- Clojure
+" -- Clojure
 Bundle 'yogsototh/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
-" YY Bundle 'jpalardy/vim-slime'
+" Bundle 'jpalardy/vim-slime'
 
 filetype on
 
@@ -184,6 +184,7 @@ autocmd BufEnter *.cljs,*.clj inoremap {   {}<Left>
 autocmd BufEnter *.cljs,*.clj inoremap (   ()<Left>
 autocmd BufEnter *.cljs,*.clj inoremap [   []<Left>
 autocmd BufEnter *.cljs,*.clj inoremap "   ""<Left>
+autocmd BufEnter *.cljs,*.clj setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 
 " Easier anti-quote
 imap éé `
