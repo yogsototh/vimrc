@@ -60,11 +60,10 @@ filetype on
 let NERDTreeIgnore=['\.o$','\~$','\.hi$']
 
 "  neocomplcache (advanced completion)
-let g:neocomplcache_enable_at_startup = 1
+autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
 
 " -- Haskell
-au Bufenter *.hs compiler ghc
-au Bufenter *.lhs compiler ghc
+au Bufenter *.hs,*.lhs compiler ghc
 let g:haddock_browser="/usr/bin/firefox"
 
 " -- vim-gitgutter
@@ -101,13 +100,16 @@ let $PATH=$PATH.':'.expand("~/.cabal/bin")
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed -input=!.cabal*\ !dist/\ !*.hi\  file_rec buffer bookmark<cr><c-u>a
+nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec buffer bookmark<cr><c-u>a
+au BufEnter *.lhs,*hs nmap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed -input=!.cabal*\ !dist/\ !*.hi\  file_rec buffer bookmark<cr><c-u>a
 nnoremap <space>f :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <space>b :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer<cr>
 " make a grep on all files!
 nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
 nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
+" reset not it is <C-l> normally
+:nnoremap <space>r <Plug>(unite_redraw)
 
 " #####################
 " ### Personal conf ###
