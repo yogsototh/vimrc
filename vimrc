@@ -49,6 +49,8 @@ Bundle 'othree/xml.vim'
 Bundle 'yogsototh/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 " Bundle 'jpalardy/vim-slime'
+" -- ag
+Bundle "rking/ag.vim"
 
 filetype on
 
@@ -57,7 +59,7 @@ filetype on
 " ###################
 
 " NERDTree
-let NERDTreeIgnore=['\.o$','\~$','\.hi$']
+" let NERDTreeIgnore=['\.o$','\~$','\.hi$']
 
 "  neocomplcache (advanced completion)
 autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
@@ -109,7 +111,7 @@ nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
 nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
 " reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_redraw)
+:nnoremap <space>r <Plug>(unite_restart)
 
 " #####################
 " ### Personal conf ###
@@ -190,3 +192,4 @@ autocmd BufEnter *.cljs,*.clj setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 
 " Easier anti-quote
 imap éé `
+
