@@ -86,13 +86,8 @@ if (exists('+colorcolumn'))
 endif
 
 " -- solarized theme
-set background=light
-" My terminal handle solarized theme correctly
-" so solarized only for GUI
-if has('gui_running')
-   " color theme solarized both on gui and standard
-   colorscheme solarized
-endif
+set background=dark
+colorscheme solarized
 
 " -- neco-ghc
 " let g:necoghc_enable_detailed_browse=1
