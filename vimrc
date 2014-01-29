@@ -53,6 +53,8 @@ Bundle 'paredit.vim'
 " Bundle 'jpalardy/vim-slime'
 " -- ag
 Bundle "rking/ag.vim"
+" --- elm-lang
+Bundle 'lambdatoast/elm.vim'
 
 filetype on
 
