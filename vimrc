@@ -46,8 +46,10 @@ Bundle 'pbrisbin/html-template-syntax'
 " --- XML
 Bundle 'othree/xml.vim'
 " -- Clojure
-Bundle 'yogsototh/rainbow_parentheses.vim'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
+Bundle 'paredit.vim'
+
 " Bundle 'jpalardy/vim-slime'
 " -- ag
 Bundle "rking/ag.vim"
@@ -81,7 +83,7 @@ nmap gN <Plug>GitGutterPrevHunk
 
 " -- show the column 81
 if (exists('+colorcolumn'))
-    highlight ColorColumn ctermbg=0
+    highlight ColorColumn ctermbg=9
     set colorcolumn=80
 endif
 
@@ -179,11 +181,28 @@ autocmd BufEnter *.cljs,*.clj RainbowParenthesesActivate
 autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadRound
 autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadSquare
 autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadBraces
-autocmd BufEnter *.cljs,*.clj inoremap {   {}<Left>
-autocmd BufEnter *.cljs,*.clj inoremap (   ()<Left>
-autocmd BufEnter *.cljs,*.clj inoremap [   []<Left>
-autocmd BufEnter *.cljs,*.clj inoremap "   ""<Left>
+" Fix I don't know why
 autocmd BufEnter *.cljs,*.clj setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+let g:rbpt_colorpairs = [
+	\ ['darkyellow',  'RoyalBlue3'],
+	\ ['darkgreen',   'SeaGreen3'],
+	\ ['darkcyan',    'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['DarkMagenta', 'RoyalBlue3'],
+	\ ['darkred',     'SeaGreen3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkgreen',   'firebrick3'],
+	\ ['darkcyan',    'RoyalBlue3'],
+	\ ['Darkblue',    'SeaGreen3'],
+	\ ['DarkMagenta', 'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['darkcyan',    'SeaGreen3'],
+	\ ['darkgreen',   'RoyalBlue3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkred',     'firebrick3'],
+	\ ]
+
 
 " Easier anti-quote
 imap éé `
