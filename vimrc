@@ -56,6 +56,9 @@ Bundle "rking/ag.vim"
 " --- elm-lang
 Bundle 'lambdatoast/elm.vim'
 
+" -- reload browser on change
+Bundle 'Bogdanp/browser-connect.vim'
+
 filetype on
 
 " ###################
@@ -178,13 +181,13 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
-autocmd BufEnter *.cljs set filetype=clojure
-autocmd BufEnter *.cljs,*.clj RainbowParenthesesActivate
-autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadRound
-autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadSquare
-autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.cljs.hl set filetype=clojure
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 " Fix I don't know why
-autocmd BufEnter *.cljs,*.clj setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 " -- Rainbow parenthesis options
 let g:rbpt_colorpairs = [
 	\ ['darkyellow',  'RoyalBlue3'],
@@ -205,7 +208,14 @@ let g:rbpt_colorpairs = [
 	\ ['darkred',     'firebrick3'],
 	\ ]
 
+" -- Reload browser on cljs save
+"  don't forget to put <script src="http://localhost:9001/ws"></script>
+"  in your HTML
+au BufWritePost *.cljs :BCReloadPage
+
 
 " Easier anti-quote
 imap éé `
 
+" -- Reload browser
+let g:returnApp = "iTerm"
