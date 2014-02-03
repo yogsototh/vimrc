@@ -49,6 +49,9 @@ Bundle 'othree/xml.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'paredit.vim'
+Bundle 'tpope/vim-fireplace'
+" <<< vim-fireplace dependencie
+Bundle 'tpope/vim-classpath'
 
 " Bundle 'jpalardy/vim-slime'
 " -- ag
@@ -85,12 +88,6 @@ nmap gN <Plug>GitGutterPrevHunk
 " highlight GitGutterChangeLine ctermbg=0
 " highlight GitGutterDeleteLine ctermbg=0
 " highlight GitGutterChangeDeleteLine ctermbg=0
-
-" -- show the column 81
-if (exists('+colorcolumn'))
-    highlight ColorColumn ctermbg=9
-    set colorcolumn=80
-endif
 
 " -- solarized theme
 set background=dark
@@ -175,10 +172,6 @@ endif
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
-" ========
-" Personal
-" ========
-
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
 autocmd BufEnter *.cljs,*.cljs.hl set filetype=clojure
@@ -207,15 +200,22 @@ let g:rbpt_colorpairs = [
 	\ ['darkyellow',  'DarkOrchid3'],
 	\ ['darkred',     'firebrick3'],
 	\ ]
-
 " -- Reload browser on cljs save
 "  don't forget to put <script src="http://localhost:9001/ws"></script>
 "  in your HTML
 au BufWritePost *.cljs :BCReloadPage
+au BufWritePost *.cljs.hl :BCReloadPage
 
+" ========
+" Personal
+" ========
 
 " Easier anti-quote
 imap éé `
 
-" -- Reload browser
-let g:returnApp = "iTerm"
+" -- show the column 81
+if (exists('+colorcolumn'))
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=9
+endif
+
