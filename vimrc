@@ -28,6 +28,8 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
 " writing pandoc documents
 Bundle 'vim-pandoc/vim-pandoc'
+" GIT
+Bundle 'tpope/vim-fugitive'
 " show which line changed using git
 Bundle 'airblade/vim-gitgutter'
 " Align code
