@@ -221,3 +221,5 @@ if (exists('+colorcolumn'))
     highlight ColorColumn ctermbg=9
 endif
 
+" --- type ° to search the word in all files in the current dir
+nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
