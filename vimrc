@@ -73,12 +73,19 @@ filetype on
 " NERDTree
 " let NERDTreeIgnore=['\.o$','\~$','\.hi$']
 
-"  neocomplcache (advanced completion)
-autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
-
 " -- Haskell
 au Bufenter *.hs,*.lhs compiler ghc
 let g:haddock_browser="/usr/bin/firefox"
+
+"  neocomplcache (advanced completion)
+autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
+function! SetToCabalBuild()
+    if glob("*.cabal") != ''
+        set makeprg=cabal\ build
+    endif
+endfunction
+autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+
 
 " -- vim-gitgutter
 highlight clear SignColumn
