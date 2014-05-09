@@ -9,10 +9,11 @@
 " cabal install ghc-mod
 " -----------
 filetype off
+set shell=/bin/sh
 set rtp+=~/.vim/vundle/vundleinit/
 call vundle#rc()
 " the vundle plugin to install vim plugin
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 " completion during typing
 Bundle 'neocomplcache'
 " solarized colorscheme
@@ -60,6 +61,8 @@ Bundle 'tpope/vim-classpath'
 Bundle "rking/ag.vim"
 " --- elm-lang
 Bundle 'lambdatoast/elm.vim'
+" --- Idris
+Bundle 'idris-hackers/idris-vim'
 
 " -- reload browser on change
 Bundle 'Bogdanp/browser-connect.vim'
