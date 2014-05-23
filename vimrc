@@ -9,10 +9,11 @@
 " cabal install ghc-mod
 " -----------
 filetype off
+set shell=/bin/sh
 set rtp+=~/.vim/vundle/vundleinit/
 call vundle#rc()
 " the vundle plugin to install vim plugin
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 " completion during typing
 Bundle 'neocomplcache'
 " solarized colorscheme
@@ -60,6 +61,8 @@ Bundle 'tpope/vim-classpath'
 Bundle "rking/ag.vim"
 " --- elm-lang
 Bundle 'lambdatoast/elm.vim'
+" --- Idris
+Bundle 'idris-hackers/idris-vim'
 
 " -- reload browser on change
 Bundle 'Bogdanp/browser-connect.vim'
@@ -76,12 +79,19 @@ filetype on
 " NERDTree
 " let NERDTreeIgnore=['\.o$','\~$','\.hi$']
 
-"  neocomplcache (advanced completion)
-autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
-
 " -- Haskell
 au Bufenter *.hs,*.lhs compiler ghc
 let g:haddock_browser="/usr/bin/firefox"
+
+"  neocomplcache (advanced completion)
+autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
+function! SetToCabalBuild()
+    if glob("*.cabal") != ''
+        set makeprg=cabal\ build
+    endif
+endfunction
+autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+
 
 " -- vim-gitgutter
 highlight clear SignColumn
