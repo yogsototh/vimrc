@@ -39,6 +39,7 @@ Bundle 'junegunn/vim-easy-align'
 Bundle 'zenzike/vim-haskell'
 Bundle 'dan-t/vim-hsimport'
 " Bundle 'haskell.vim'
+Bundle 'kana/vim-filetype-haskell'
 " Haskell mode
 Bundle 'lukerandall/haskellmode-vim'
 " neocomplcache plugin for Haskell
