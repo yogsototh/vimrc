@@ -64,6 +64,9 @@ Bundle 'lambdatoast/elm.vim'
 " -- reload browser on change
 Bundle 'Bogdanp/browser-connect.vim'
 
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'einars/js-beautify'
+
 filetype on
 
 " ###################
@@ -223,3 +226,10 @@ endif
 
 " --- type ° to search the word in all files in the current dir
 nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
+
+" -- js beautifer
+autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :call JsBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :call JsBeautify()<cr>
+
+" set noswapfile

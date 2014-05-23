@@ -1,0 +1,25 @@
+; .editorconfig
+
+root = true
+
+[**.js]
+path = ~/.vim/bundle/js-beautify/js/lib/beautify.js
+bin = node
+ident_size=2
+ident_style = space
+brace_style = collapse
+charset = utf-8
+trim_trailing_whitespace = true
+wrap_line_length = 120
+max_preserve_newlines = 2
+
+[**.css]
+path = ~/.vim/bundle/js-beautify/js/lib/beautify-css.js
+ident_style = space
+ident_size = 2
+
+[**.html]
+ident_style = space
+ident_size = 2
+max_char = 120
+brace_style = expand
