@@ -2,12 +2,12 @@
 " http://yannesposito.com
 " @yogsototh
 "
-" --- Plugins ---
+" ---------- VERY IMPORTANT -----------
 " To install plugin the first time:
 " > vim +BundleInstall +qall
 " cd ~/.vim/bundle/vimproc.vim && make
 " cabal install ghc-mod
-" -----------
+" -------------------------------------
 filetype off
 set shell=/bin/sh
 set nocompatible
@@ -121,14 +121,13 @@ let $PATH=$PATH.':'.expand("~/.cabal/bin")
 " -- Unite
 let g:unite_source_history_yank_enable = 1
 try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
 catch
 endtry
 " search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec buffer bookmark<cr><c-u>a
-au BufEnter *.lhs,*hs nmap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed -input=!.cabal*\ !dist/\ !*.hi\  file_rec buffer bookmark<cr><c-u>a
-nnoremap <space>f :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <space>b :split<cr> :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer<cr>
+nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+nnoremap <space>f :split<cr> :<C-u>Unite file<cr>
 " make a grep on all files!
 nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
