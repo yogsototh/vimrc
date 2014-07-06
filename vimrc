@@ -10,7 +10,9 @@
 " -----------
 filetype off
 set shell=/bin/sh
+set nocompatible
 set rtp+=~/.vim/vundle/vundleinit/
+" set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " the vundle plugin to install vim plugin
 " Bundle 'gmarik/vundle'
@@ -107,7 +109,10 @@ nmap gN <Plug>GitGutterPrevHunk
 
 " -- solarized theme
 set background=dark
-colorscheme solarized
+try
+    colorscheme solarized
+catch
+endtry
 
 " -- neco-ghc
 " let g:necoghc_enable_detailed_browse=1
@@ -115,7 +120,10 @@ let $PATH=$PATH.':'.expand("~/.cabal/bin")
 
 " -- Unite
 let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+try
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
 " search a file in the filetree
 nnoremap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec buffer bookmark<cr><c-u>a
 au BufEnter *.lhs,*hs nmap <space><space> :split<cr> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed -input=!.cabal*\ !dist/\ !*.hi\  file_rec buffer bookmark<cr><c-u>a
