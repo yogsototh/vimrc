@@ -7,6 +7,7 @@ The `vimrc` file should be easy to understand and contains almost everything.
         git clone https://github.com/yogsototh/vimrc.git .vim
         ln -s .vim/vimrc .vimrc
         vim +BundleInstall +qall
+        cd ~/.vim/bundle/vimproc.vim && make
 
 for Haskell
 

@@ -93,6 +93,8 @@ function! SetToCabalBuild()
 endfunction
 autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
 
+" -- Frege
+autocmd BufEnter *.fr :filetype haskell
 
 " -- vim-gitgutter
 highlight clear SignColumn
@@ -120,6 +122,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " search a file in the filetree
 nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 nnoremap <space>f :split<cr> :<C-u>Unite file<cr>
+nnoremap <space>g :split<cr> :<C-u>Unite -start-insert file_rec/git<cr>
 " make a grep on all files!
 nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
