@@ -11,7 +11,7 @@
 filetype off
 set shell=/bin/sh
 set nocompatible
-set rtp+=~/.vim/vundle/vundleinit/
+set rtp+=~/.vim/vundle/Vundle.vim/
 " set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " the vundle plugin to install vim plugin
