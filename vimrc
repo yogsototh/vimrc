@@ -8,72 +8,76 @@
 " cd ~/.vim/bundle/vimproc.vim && make
 " cabal install ghc-mod
 " -------------------------------------
-filetype off
-set shell=/bin/sh
-set nocompatible
-set rtp+=~/.vim/vundle/Vundle.vim/
+
+
+call plug#begin('~/.vim/plugged')
+
+" #### set rtp+=~/.vim/vundle/Vundle.vim/
 " set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" ### call vundle#rc()
 " the vundle plugin to install vim plugin
 " Bundle 'gmarik/vundle'
 " completion during typing
-Bundle 'neocomplcache'
+Plug 'neocomplcache'
 " solarized colorscheme
-Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Right way to handle trailing-whitespace
-Bundle 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " NERDTree
-" Bundle 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Unite
 "   depend on vimproc
 "   you have to go to .vim/plugin/vimproc.vim and do a ./make
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/unite.vim'
 " writing pandoc documents
-Bundle 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " GIT
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " show which line changed using git
-Bundle 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Align code
-Bundle 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 " --- Haskell
-Bundle 'zenzike/vim-haskell'
-Bundle 'dan-t/vim-hsimport'
-" Bundle 'haskell.vim'
-Bundle 'kana/vim-filetype-haskell'
+Plug 'zenzike/vim-haskell'
+Plug 'dan-t/vim-hsimport'
+" Plug 'haskell.vim'
+Plug 'kana/vim-filetype-haskell'
 " Haskell mode
-Bundle 'lukerandall/haskellmode-vim'
+Plug 'lukerandall/haskellmode-vim'
 " neocomplcache plugin for Haskell
 " IMPORTANT you need to 'cabal install ghc-mod'
-Bundle 'ujihisa/neco-ghc'
+Plug 'ujihisa/neco-ghc'
 " Yesod templates
-Bundle 'pbrisbin/html-template-syntax'
+Plug 'pbrisbin/html-template-syntax'
 " --- XML
-Bundle 'othree/xml.vim'
+Plug 'othree/xml.vim'
 " -- Clojure
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'guns/vim-clojure-static'
-Bundle 'paredit.vim'
-Bundle 'tpope/vim-fireplace'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-static'
+Plug 'paredit.vim'
+Plug 'tpope/vim-fireplace'
 " <<< vim-fireplace dependencie
-Bundle 'tpope/vim-classpath'
+Plug 'tpope/vim-classpath'
 
-" Bundle 'jpalardy/vim-slime'
+" Plug 'jpalardy/vim-slime'
 " -- ag
-Bundle "rking/ag.vim"
+Plug 'rking/ag.vim'
 " --- elm-lang
-Bundle 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim'
 " --- Idris
-Bundle 'idris-hackers/idris-vim'
+Plug 'idris-hackers/idris-vim'
 
 " -- reload browser on change
-Bundle 'Bogdanp/browser-connect.vim'
+Plug 'Bogdanp/browser-connect.vim'
 
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'einars/js-beautify'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'einars/js-beautify'
 
-filetype on
+call plug#end()
+
+set nocompatible
 
 " ###################
 " ### Plugin conf ###
@@ -229,8 +233,7 @@ let g:rbpt_colorpairs = [
 " -- Reload browser on cljs save
 "  don't forget to put <script src="http://localhost:9001/ws"></script>
 "  in your HTML
-au BufWritePost *.cljs :BCReloadPage
-au BufWritePost *.cljs.hl :BCReloadPage
+" au BufWritePost *.cljs :BCReloadPage
 
 " ========
 " Personal
@@ -254,3 +257,6 @@ autocmd FileType html noremap <buffer> <c-f> :call JsBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call JsBeautify()<cr>
 
 " set noswapfile
+
+" -- vim-pandoc folding
+let g:pandoc#modules#disabled = ["folding"]
