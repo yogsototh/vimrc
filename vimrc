@@ -40,17 +40,12 @@ Plug 'airblade/vim-gitgutter'
 " Align code
 Plug 'junegunn/vim-easy-align'
 " --- Haskell
-Plug 'zenzike/vim-haskell'
-Plug 'dan-t/vim-hsimport'
-" Plug 'haskell.vim'
-Plug 'kana/vim-filetype-haskell'
-" Haskell mode
-Plug 'lukerandall/haskellmode-vim'
-" neocomplcache plugin for Haskell
-" IMPORTANT you need to 'cabal install ghc-mod'
-Plug 'ujihisa/neco-ghc'
-" Yesod templates
-Plug 'pbrisbin/html-template-syntax'
+Plug 'raichoo/haskell-vim'              " syntax indentation
+Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'Twinside/vim-hoogle'
+Plug 'pbrisbin/html-template-syntax'    " Yesod templates
 " --- XML
 Plug 'othree/xml.vim'
 " -- Clojure
@@ -87,8 +82,14 @@ set nocompatible
 " let NERDTreeIgnore=['\.o$','\~$','\.hi$']
 
 " -- Haskell
-au Bufenter *.hs,*.lhs compiler ghc
-let g:haddock_browser="/usr/bin/firefox"
+let mapleader=","
+let g:mapleader=","
+set tm=2000
+nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>
+let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
+nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
 
 "  neocomplcache (advanced completion)
 autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
