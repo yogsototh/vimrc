@@ -39,6 +39,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Align code
 Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/syntastic'             " syntax checker
 " --- Haskell
 Plug 'raichoo/haskell-vim'              " syntax indentation
 Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
@@ -78,18 +79,22 @@ set nocompatible
 " ### Plugin conf ###
 " ###################
 
-" NERDTree
-" let NERDTreeIgnore=['\.o$','\~$','\.hi$']
-
-" -- Haskell
-let mapleader=","
-let g:mapleader=","
+" -------------------
+"       Haskell
+" -------------------
+let mapleader="-"
+let g:mapleader="-"
 set tm=2000
 nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hh :GhcModTypeClear<CR>
 nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>
+nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>:lopen<CR>
 let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
-nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
+let g:syntastic_always_populate_loc_list = 1
+nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
+
+" Auto-checking on writing
+autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
 
 "  neocomplcache (advanced completion)
 autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
@@ -100,19 +105,25 @@ function! SetToCabalBuild()
 endfunction
 autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
 
+" -- neco-ghc
+let $PATH=$PATH.':'.expand("~/.cabal/bin")
+
 " -- Frege
 autocmd BufEnter *.fr :filetype haskell
+
+" ----------------
+"       GIT
+" ----------------
 
 " -- vim-gitgutter
 highlight clear SignColumn
 highlight SignColumn ctermbg=0
 nmap gn <Plug>GitGutterNextHunk
 nmap gN <Plug>GitGutterPrevHunk
-" GitGutterLineHighlightsEnable
-" highlight GitGutterAddLine ctermbg=0
-" highlight GitGutterChangeLine ctermbg=0
-" highlight GitGutterDeleteLine ctermbg=0
-" highlight GitGutterChangeDeleteLine ctermbg=0
+
+" -----------------
+"       THEME
+" -----------------
 
 " -- solarized theme
 set background=dark
@@ -121,11 +132,9 @@ try
 catch
 endtry
 
-" -- neco-ghc
-" let g:necoghc_enable_detailed_browse=1
-let $PATH=$PATH.':'.expand("~/.cabal/bin")
-
-" -- Unite
+" ----------------------------
+"       File Management
+" ----------------------------
 let g:unite_source_history_yank_enable = 1
 try
   let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
@@ -143,6 +152,37 @@ nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
 " reset not it is <C-l> normally
 :nnoremap <space>r <Plug>(unite_restart)
 
+" ------------------
+"       Clojure
+" ------------------
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+" Fix I don't know why
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+let g:rbpt_colorpairs = [
+	\ ['darkyellow',  'RoyalBlue3'],
+	\ ['darkgreen',   'SeaGreen3'],
+	\ ['darkcyan',    'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['DarkMagenta', 'RoyalBlue3'],
+	\ ['darkred',     'SeaGreen3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkgreen',   'firebrick3'],
+	\ ['darkcyan',    'RoyalBlue3'],
+	\ ['Darkblue',    'SeaGreen3'],
+	\ ['DarkMagenta', 'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['darkcyan',    'SeaGreen3'],
+	\ ['darkgreen',   'RoyalBlue3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkred',     'firebrick3'],
+	\ ]
+
+
+
 " #####################
 " ### Personal conf ###
 " #####################
@@ -159,6 +199,8 @@ set ruler		        " show the cursor position all the time
 syntax on " syntax highlighting
 set hlsearch " highlight searches
 
+
+set visualbell " no beep
 
 " move between splits
 noremap <C-h> <C-w>h
@@ -206,31 +248,6 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " .ymd file type
 autocmd BufEnter *.ymd set filetype=markdown
 autocmd BufEnter *.cljs,*.cljs.hl set filetype=clojure
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
-" Fix I don't know why
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
-" -- Rainbow parenthesis options
-let g:rbpt_colorpairs = [
-	\ ['darkyellow',  'RoyalBlue3'],
-	\ ['darkgreen',   'SeaGreen3'],
-	\ ['darkcyan',    'DarkOrchid3'],
-	\ ['Darkblue',    'firebrick3'],
-	\ ['DarkMagenta', 'RoyalBlue3'],
-	\ ['darkred',     'SeaGreen3'],
-	\ ['darkyellow',  'DarkOrchid3'],
-	\ ['darkgreen',   'firebrick3'],
-	\ ['darkcyan',    'RoyalBlue3'],
-	\ ['Darkblue',    'SeaGreen3'],
-	\ ['DarkMagenta', 'DarkOrchid3'],
-	\ ['Darkblue',    'firebrick3'],
-	\ ['darkcyan',    'SeaGreen3'],
-	\ ['darkgreen',   'RoyalBlue3'],
-	\ ['darkyellow',  'DarkOrchid3'],
-	\ ['darkred',     'firebrick3'],
-	\ ]
 " -- Reload browser on cljs save
 "  don't forget to put <script src="http://localhost:9001/ws"></script>
 "  in your HTML
