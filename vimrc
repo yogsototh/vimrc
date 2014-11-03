@@ -41,7 +41,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'             " syntax checker
 " --- Haskell
-Plug 'raichoo/haskell-vim'              " syntax indentation
+Plug 'yogsototh/haskell-vim'            " syntax indentation / highlight
 Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
