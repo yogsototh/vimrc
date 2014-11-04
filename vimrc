@@ -66,7 +66,7 @@ Plug 'lambdatoast/elm.vim'
 Plug 'idris-hackers/idris-vim'
 
 " -- reload browser on change
-Plug 'Bogdanp/browser-connect.vim'
+" Plug 'Bogdanp/browser-connect.vim'
 
 Plug 'maksimr/vim-jsbeautify'
 Plug 'einars/js-beautify'
