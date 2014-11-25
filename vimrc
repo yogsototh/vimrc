@@ -49,13 +49,15 @@ Plug 'Twinside/vim-hoogle'
 Plug 'pbrisbin/html-template-syntax'    " Yesod templates
 " --- XML
 Plug 'othree/xml.vim'
-" -- Clojure
+" " -- Clojure
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'guns/vim-clojure-static'
-Plug 'paredit.vim'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-repeat'
+" " Plug 'paredit.vim'
 Plug 'tpope/vim-fireplace'
-" <<< vim-fireplace dependencie
-Plug 'tpope/vim-classpath'
+" " <<< vim-fireplace dependencie
+" Plug 'tpope/vim-classpath'
 
 " Plug 'jpalardy/vim-slime'
 " -- ag
