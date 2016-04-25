@@ -4,19 +4,16 @@
 "
 " ---------- VERY IMPORTANT -----------
 " To install plugin the first time:
-" > vim +BundleInstall +qall
+" > vim +PlugInstall +qall
 " cd ~/.vim/bundle/vimproc.vim && make
 " cabal install ghc-mod
 " -------------------------------------
 
-
 call plug#begin('~/.vim/plugged')
 
-" #### set rtp+=~/.vim/vundle/Vundle.vim/
-" set rtp+=~/.vim/bundle/vundle/
-" ### call vundle#rc()
-" the vundle plugin to install vim plugin
-" Bundle 'gmarik/vundle'
+" Distraction Free Writting
+Plug 'junegunn/goyo.vim'
+
 " completion during typing
 Plug 'neocomplcache'
 " solarized colorscheme
@@ -42,10 +39,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'             " syntax checker
 " --- Haskell
 Plug 'yogsototh/haskell-vim'            " syntax indentation / highlight
-Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
-Plug 'Twinside/vim-hoogle'
+" Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
+" Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/neco-ghc'
+" Plug 'Twinside/vim-hoogle'
 Plug 'pbrisbin/html-template-syntax'    " Yesod templates
 " --- XML
 Plug 'othree/xml.vim'
@@ -73,6 +70,8 @@ Plug 'idris-hackers/idris-vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'einars/js-beautify'
 
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 
 set nocompatible
@@ -87,25 +86,25 @@ set nocompatible
 let mapleader="-"
 let g:mapleader="-"
 set tm=2000
-nmap <silent> <leader>ht :GhcModType<CR>
-nmap <silent> <leader>hh :GhcModTypeClear<CR>
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>:lopen<CR>
-let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
-let g:syntastic_always_populate_loc_list = 1
-nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
+" nmap <silent> <leader>ht :GhcModType<CR>
+" nmap <silent> <leader>hh :GhcModTypeClear<CR>
+" nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>:lopen<CR>
+" let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
+" let g:syntastic_always_populate_loc_list = 1
+" nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
 
 " Auto-checking on writing
-autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
+" autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
 
 "  neocomplcache (advanced completion)
-autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
-function! SetToCabalBuild()
-    if glob("*.cabal") != ''
-        set makeprg=cabal\ build
-    endif
-endfunction
-autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+" autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
+" function! SetToCabalBuild()
+"     if glob("*.cabal") != ''
+"         set makeprg=cabal\ build
+"     endif
+" endfunction
+" autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
 
 " -- neco-ghc
 let $PATH=$PATH.':'.expand("~/.cabal/bin")
@@ -147,8 +146,6 @@ endtry
 nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 nnoremap <space>f :split<cr> :<C-u>Unite file<cr>
 nnoremap <space>g :split<cr> :<C-u>Unite -start-insert file_rec/git<cr>
-" make a grep on all files!
-nnoremap <space>/ :split<cr> :<C-u>Unite grep:.<cr>
 " see the yank history
 nnoremap <space>y :split<cr>:<C-u>Unite history/yank<cr>
 " reset not it is <C-l> normally
@@ -263,13 +260,14 @@ autocmd BufEnter *.cljs,*.cljs.hl set filetype=clojure
 imap éé `
 
 " -- show the column 81
-if (exists('+colorcolumn'))
-    set colorcolumn=80
-    highlight ColorColumn ctermbg=9
-endif
+" if (exists('+colorcolumn'))
+"     set colorcolumn=80
+"     highlight ColorColumn ctermbg=1
+" endif
 
 " --- type ° to search the word in all files in the current dir
 nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <space>/ :Ag 
 
 " -- js beautifer
 autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
